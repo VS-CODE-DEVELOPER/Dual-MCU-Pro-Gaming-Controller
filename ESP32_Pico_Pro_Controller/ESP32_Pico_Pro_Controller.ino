@@ -17,7 +17,7 @@
 #define ESP_TX_PIN 43
 #define ESP_RX_PIN 44
 
-// 🛑 REPLACE THIS with the MAC Address of your DONGLE ESP32 (if using ESP-NOW)
+// 🛑 REPLACE THIS with the MAC Address of your DONGLE ESP32 
 uint8_t dongleAddress[] = {0xAC, 0xA7, 0x04, 0xEE, 0xCC, 0xB4};
 esp_now_peer_info_t peerInfo;
 
