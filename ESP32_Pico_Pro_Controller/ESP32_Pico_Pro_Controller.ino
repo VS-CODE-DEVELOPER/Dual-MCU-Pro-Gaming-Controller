@@ -1,5 +1,5 @@
 /*
- * ESP32-S3 Pro Controller Master Code - THE TMR GOD BUILD
+ * ESP32-S3 Pro Controller Master Code 
  * Architecture: Dual-Core FreeRTOS & 16-Byte GP2040-CE Packet
  * Math Engine: V1.11 Perfect-Circle Radial Math (TMR Tuned)
  * Polling: True 1000Hz (1ms FreeRTOS Tick)
