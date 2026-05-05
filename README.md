@@ -45,10 +45,14 @@ The Raspberry Pi Pico requires our specific build of GP2040-CE to accept the cus
    `uint8_t dongleAddress[] = {0xAC, 0xA7, 0x04, 0xEE, 0xCC, 0xB4};`
 3. Flash the respective boards.
 
-### Step 3: GP2040-CE Web Configuration (Pin Mapping)
-Because our custom GP2040-CE build utilizes pre-defined hardware serial pins (`UART_TX_PIN = 4`, `UART_RX_PIN = 5`), you must clear these pins from the standard UI to prevent conflicts.
+### Step 3: Hardware Wiring & GP2040-CE Pin Clearing
+While the custom UART translation layer is built directly into our firmware, the base GP2040-CE system still assigns default arcade buttons to GPIO 4 and GPIO 5. You must clear these default assignments to prevent the Pico from misinterpreting your high-speed serial data as standard button presses.
+
 1. Connect the RP2040 to your PC while holding `START` to enter Web Config mode.
-2. Navigate to `http://192.168.7.1` in your browser. (If unreachable, flash the `force_web_config.uf2` utility).
-3. **Clear Default Pins:** Go to **Configuration > Pin Mapping**. Ensure `GPIO 4` and `GPIO 5` are unassigned (set to `None`). Click **Save**.
-4. **Enable UART:** Go to **Configuration > Add-Ons** and enable the **UART / Serial / Bluetooth** add-on. Click **Save**.
-5. **Finalize Wiring:** You do *not* need to manually map the TX/RX pins in the Add-on UI. Ensure your physical data lines are wired to **GPIO 4 (TX)** and **GPIO 5 (RX)** on the Pico, then Reboot.
+2. Navigate to `http://192.168.7.1` in your browser. 
+   > **Troubleshooting:** If the web menu will not open, simply drag and drop the included `force_web_config.uf2` file onto the RP2040 drive. **Do not use the flash nuke or delete any files.** This utility is non-destructive; it safely forces the web menu open without wiping your board's memory.
+3. **Clear Default Pins:** Go to **Configuration > Pin Mapping**. Ensure `GPIO 4` and `GPIO 5` are completely unassigned (set them to `None`). Click **Save**.
+4. **Finalize Wiring:** Wire the data lines from your ESP32 directly to the pre-defined hardware serial pins on the RP2040:
+   * **ESP32 TX (GPIO 43)** ➔ **Pico RX (GPIO 5)**
+   * **ESP32 RX (GPIO 44)** ➔ **Pico TX (GPIO 4)**
+5. Reboot the device. The Pico will now seamlessly parse the 16-byte custom payload into native USB HID inputs.
