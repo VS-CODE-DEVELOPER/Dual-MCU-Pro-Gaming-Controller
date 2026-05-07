@@ -4,7 +4,7 @@ This sub-repository contains the primary firmware for the ESP32-S3 processing no
 
 *(Note: This controller can operate as a completely standalone, independent device via direct Wired UART or standard BLE, even without the companion receiver dongle).*
 
-## ⚙️ Core Technical Features
+## Core Technical Features
 
 ### Magnetic Sensor Signal Conditioning
 This build is specifically optimized for magnetic input modules, supporting both **TMR (Tunneling Magnetoresistance)** thumbsticks and **SS49E Linear Hall Effect** analog triggers. The firmware applies localized exponential moving averages (EMA) to crush voltage ripple, and utilizes Pythagorean vector math to guarantee perfect circularity on the thumbsticks. 
@@ -15,7 +15,7 @@ To communicate flawlessly with GP2040-CE via UART, this firmware constructs a hi
 ### Non-Volatile Hardware Calibration
 Standard DIY controllers rely on external PC software for deadzone configuration. This firmware contains a Live Calibration State Machine. Analog bounds, trigger resting states, and center-points are calculated on-device and written directly to the ESP32 `Preferences` flash memory. 
 
-## 🔌 Hardware Pinout
+## Hardware Pinout
 
 | Analog / ADC Inputs | ESP32-S3 GPIO | Digital Inputs | ESP32-S3 GPIO |
 | :--- | :--- | :--- | :--- |
@@ -28,13 +28,13 @@ Standard DIY controllers rely on external PC software for deadzone configuration
 
 *(Note: NeoPixel Status LED is assigned to GPIO 48).*
 
-## 🎮 Mode Switching Protocol
+## Mode Switching Protocol
 The controller can hot-swap connection protocols dynamically. Hold **HOME** + a face button for 1.5 seconds:
 * `HOME` + `OPTIONS`: **UART Wired Mode** (Direct serial transmission, LED flashes Green)
 * `HOME` + `SHARE`: **ESP-NOW Dongle Mode** (1000Hz Encrypted 2.4GHz, LED flashes Orange)
 * `HOME` + `TRIANGLE`: **BLE Mode** (Standard Bluetooth for mobile/PC, LED flashes Blue)
 
-## 🔧 User Guide: Calibration Sequence
+## User Guide: Calibration Sequence
 Magnetic sensors must be calibrated to establish center-points and maximum vectors.
 1. Power the controller. Press and hold `SHARE + L1 + R1` for two seconds. The status LED will illuminate **Yellow**.
 2. **Hands off the sticks and triggers.** Wait 1.5 seconds for the firmware to register the resting baselines. The LED will change to **Purple**.

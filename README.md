@@ -4,7 +4,7 @@ A deterministic, high-performance embedded controller architecture combining ESP
 
 *(Note: The receiver dongle is entirely optional. The primary ESP32-S3 controller can operate as a standalone, independent device via direct Wired UART or standard BLE).*
 
-## 🧩 System Architecture & Methodology
+## System Architecture & Methodology
 
 Standard DIY controllers frequently encounter single-core processing bottlenecks, leading to USB polling jitter and dropped packets. By utilizing a **Dual-MCU Topology**, this project isolates the analog signal processing from the USB translation layer. 
 
@@ -20,17 +20,17 @@ Unlike standard ALPS potentiometers, magnetic sensors are highly sensitive to ma
 ### 3. Deterministic 1000Hz Pipeline
 When using the optional wireless configuration, the ESP-NOW dongle offloads the USB HID polling overhead entirely to a dedicated Raspberry Pi Pico running GP2040-CE. Both the ESP32 controller and the receiver dongle utilize hard-coded 1ms RTOS ticks to tightly synchronize with the GP2040-CE 1000Hz USB polling rate.
 
-## 📂 Repository Structure
+## Repository Structure
 This architecture relies on up to three distinct hardware components. 
 1. **[Controller Node (ESP32-S3)](./ESP32_Pico_Pro_Controller):** The primary input processing unit featuring Tri-Mode Switching, SS49E trigger support, and NVS hardware calibration.
 2. **[Receiver Dongle (ESP32-S3)](./ESP32_Pico_Dongle_Receiver):** *(Optional)* A dedicated 1000Hz wireless bridge engineered with thermal-throttled ACK packets.
 3. **GP2040-CE Host (RP2040):** The serial translation layer that natively handles XInput, PS4, or Switch USB protocols.
 
-## 🚀 Installation & Firmware Guide
+## Installation & Firmware Guide
 
 All compiled binaries required for the RP2040 host are located on the Releases page.
 
-**📥 [Download the Firmware & Utility Files Here](https://github.com/VS-CODE-DEVLOPER/Dual-MCU-Pro-Gaming-Controller/releases/latest)**
+** [Download the Firmware & Utility Files Here](https://github.com/VS-CODE-DEVLOPER/Dual-MCU-Pro-Gaming-Controller/releases/latest)**
 
 ### Step 1: Flash the RP2040 (GP2040-CE Host)
 The Raspberry Pi Pico requires our specific build of GP2040-CE to accept the custom 16-byte UART payload from either the Controller (Wired) or the Dongle (Wireless).
