@@ -25,6 +25,7 @@ This architecture relies on up to three distinct hardware components.
 1. **[Controller Node (ESP32-S3)](./ESP32_Pico_Pro_Controller):** The primary input processing unit featuring Tri-Mode Switching, SS49E trigger support, and NVS hardware calibration.
 2. **[Receiver Dongle (ESP32-S3)](./ESP32_Pico_Dongle_Receiver):** *(Optional)* A dedicated 1000Hz wireless bridge engineered with thermal-throttled ACK packets.
 3. **GP2040-CE Host (RP2040):** The serial translation layer that natively handles XInput, PS4, or Switch USB protocols.
+4. **[Enclosure (CAD)](./cad):** Fusion 360 source and exportable STL/STEP files for the 3D-printed controller housing.
 
 ## Installation & Firmware Guide
 
